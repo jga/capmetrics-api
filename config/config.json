@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "secureuser",
+    "password": null,
+    "database": "capmetrics_dev",
+    "host": "127.0.0.1",
+    "dialect": "sqlite3"
+  },
+  "test": {
+    "username": "secureuser",
+    "password": null,
+    "database": "capmetrics_dev",
+    "host": "127.0.0.1",
+    "dialect": "sqlite3"
+  },
+  "production": {
+    "username": "secureuser",
+    "password": null,
+    "database": "capmetrics",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
