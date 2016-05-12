@@ -4,14 +4,14 @@
     "password": null,
     "database": "capmetrics_dev",
     "host": "127.0.0.1",
-    "dialect": "sqlite3"
+    "dialect": "sqlite"
   },
   "test": {
     "username": "secureuser",
     "password": null,
     "database": "capmetrics_dev",
     "host": "127.0.0.1",
-    "dialect": "sqlite3"
+    "dialect": "sqlite"
   },
   "production": {
     "username": "secureuser",
