@@ -1,6 +1,9 @@
 # Sequelize config
 config/config.json
 
+# Documentation build
+docs
+
 # Mac dev
 .DS_Store
 
