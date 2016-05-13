@@ -1,20 +1,41 @@
 'use strict';
 /**
- * Route model.
+ * Defines a **Route** Sequelize model.
  *
  * @module models/route
- * @memberof models
  */
 
+/**
+ * A factory function that returns a Sequelize-defined **Route** model.
+ *
+ * @param {object} sequelize A sequelize instance.
+ * @param {object} DataTypes Sequelize data types.
+ * @returns {Sequelize.Model} The factory function returns a **Route** model.
+ *  These are the model fields:
+ *
+ * | Field          | Type        |
+ * |----------------|-------------|
+ * |`id`            | INTEGER     |
+ * |`routeNumber`   | INTEGER     |
+ * |`routeName`     | STRING      |
+ * |`serviceType`   | STRING      |
+ */
 module.exports = function(sequelize, DataTypes) {
-  /** Defines `Route` model for Sequelize. **/
   var Route = sequelize.define('Route', {
-    id: {type: DataTypes.INTEGER, primaryKey: true},
-    performance: {type: DataTypes.INTEGER},
+    id: { type: DataTypes.INTEGER, primaryKey: true },
+    routeNumber: { type: DataTypes.INTEGER } ,
+    routeName: { type: DataTypes.STRING },
+    serviceType: { type: DataTypes.STRING }
   }, {
+    classMethods: {
+      associate: function(models) {
+        Route.hasMany(models.DailyRidership, { foreignKey: 'route_id'});
+        Route.hasMany(models.ServiceHourRidership, { foreignKey: 'route_id'});
+      }
+    },
     timestamps: false,
     underscored: true,
-    tableName: 'daily_ridership'
+    tableName: 'route'
   });
   return Route;
 };
