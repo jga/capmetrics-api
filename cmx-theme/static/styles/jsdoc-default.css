@@ -175,6 +175,12 @@ h6
     font-style: italic;
 }
 
+
+strong {
+  font-weight: bolder;
+  font-family: sans-serif;
+}
+
 .ancestors { color: #999; }
 .ancestors a
 {
