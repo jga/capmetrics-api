@@ -12,28 +12,28 @@
  * @returns {Sequelize.Model} The factory function returns a **DailyRidership** model.
  *  These are the model fields:
  *
- * | Field          | Type        |
- * |----------------|-------------|
- * |`id`            | INTEGER     |
- * |`createdOn`     | DATE        |
- * |`current`       | BOOLEAN     |
- * |`dayOfWeek`     | STRING      |
- * |`season`        | STRING      |
- * |`year`          | INTEGER     |
- * |`ridership`     | FLOAT       |
- * |`timestamp`     | DATE        |
+ * | Field            | Type        |
+ * |------------------|-------------|
+ * |`id`              | INTEGER     |
+ * |`createdOn`       | DATE        |
+ * |`isCurrent`       | BOOLEAN     |
+ * |`dayOfWeek`       | STRING      |
+ * |`season`          | STRING      |
+ * |`calendarYear`    | INTEGER     |
+ * |`ridership`       | FLOAT       |
+ * |`seasonTimestamp` | DATE        |
  *
  */
 module.exports = function(sequelize, DataTypes) {
   var DailyRidership = sequelize.define('DailyRidership', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
-    createdOn: { type: DataTypes.DATE },
-    current: { type: DataTypes.BOOLEAN },
-    dayOfWeek: { type: DataTypes.STRING },
+    createdOn: { type: DataTypes.DATE, field: 'created_on' },
+    isCurrent: { type: DataTypes.BOOLEAN, field: 'is_current' },
+    dayOfWeek: { type: DataTypes.STRING, field: 'day_of_week' },
     season: { type: DataTypes.STRING },
-    year: { type: DataTypes.INTEGER },
+    calendarYear: { type: DataTypes.INTEGER, field: 'calendar_year' },
     ridership: { type: DataTypes.FLOAT },
-    timestamp: { type: DataTypes.DATE }
+    seasonTimestamp: { type: DataTypes.DATE, field: 'season_timestamp' }
   }, {
     classMethods: {
       associate: function(models) {
