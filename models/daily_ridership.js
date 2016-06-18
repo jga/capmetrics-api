@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
     season: { type: DataTypes.STRING },
     calendarYear: { type: DataTypes.INTEGER, field: 'calendar_year' },
     ridership: { type: DataTypes.FLOAT },
-    seasonTimestamp: { type: DataTypes.DATE, field: 'season_timestamp' }
+    measurementTimestamp: { type: DataTypes.DATE, field: 'measurement_timestamp' }
   }, {
     classMethods: {
       associate: function(models) {
