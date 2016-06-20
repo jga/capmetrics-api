@@ -18,9 +18,9 @@ let toRelationshipData = function(typeName, attributeData) {
       let resourceIdentifier = {"type": typeName, "id": attributeData[i]}
       relationshipData.push(resourceIdentifier);
     }
-    return relationshipData;
+    return { 'data': relationshipData };
   } else {
-    return {"type": typeName, "id": attributeData}
+    return { 'data': {"type": typeName, "id": attributeData} }
   }
 }
 
