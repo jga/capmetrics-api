@@ -23,7 +23,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 1
     },
     ridership2: {
@@ -34,7 +34,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 1
     },
     ridership3: {
@@ -45,7 +45,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 1
     },
     productivity1: {
@@ -56,7 +56,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 1
     },
     productivity2: {
@@ -67,7 +67,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 1
     },
     ridership1_2: {
@@ -78,7 +78,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 2
     },
     ridership2_2: {
@@ -89,7 +89,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 2
     },
     ridership3_2: {
@@ -100,7 +100,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 2
     },
     productivity1_2: {
@@ -111,7 +111,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 2
     },
     productivity2_2: {
@@ -122,7 +122,7 @@ let modelFixtures = {
       "season": "summer",
       "calendarYear": 2011,
       "ridership": 1234,
-      "seasonTimestamp": new Date('2011-07-01T06:05:00.000Z'),
+      "measurementTimestamp": new Date('2011-07-01T06:05:00.000Z'),
       "route_id": 2
     },
     trend1 : {
