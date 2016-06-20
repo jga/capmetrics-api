@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
         //return this.setDataValue('trend', value);
       //}
     },
-    serviceType: { type: DataTypes.STRING },
+    serviceType: { type: DataTypes.STRING, field: 'service_type' },
   }, {
     timestamps: false,
     underscored: true,
