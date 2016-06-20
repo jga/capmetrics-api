@@ -15,12 +15,12 @@ let toRelationshipData = function(typeName, attributeData) {
   if (attributeData instanceof Array){
     let relationshipData = [];
     for (let i = 0; i < attributeData.length; i++) {
-      let resourceIdentifier = {"type": typeName, "id": attributeData[i]}
+      let resourceIdentifier = {"type": typeName, "id": String.valueOf(attributeData[i])}
       relationshipData.push(resourceIdentifier);
     }
     return { 'data': relationshipData };
   } else {
-    return { 'data': {"type": typeName, "id": attributeData} }
+    return { 'data': { "type": typeName, "id": String.valueOf(attributeData) } }
   }
 }
 
@@ -72,7 +72,7 @@ let transformIncludeInstance = function(instance, relationshipFields){
   }
   let resourceObj = {
     'type': typeName,
-    'id': instance.id,
+    'id': String.valueOf(instance.id),
     'attributes': attributes
   }
   if (Object.keys(relationships).length !== 0) {
@@ -82,7 +82,7 @@ let transformIncludeInstance = function(instance, relationshipFields){
 }
 
 let buildRetrieval = function (model, id, includeQuery, relationshipFields) {
-  let modelQuery = model.findAll({where: { id: id }, include: includeQuery  })
+  let modelQuery = model.findAll({where: { id: parseInt(id) }, include: includeQuery  })
   return modelQuery.then(function(instances) {
     let resourceObjects = [];
     for (let i = 0; i < instances.length; i++) {
@@ -156,7 +156,7 @@ let transform = function(instance, relationshipDirectives){
   }
   let resourceObj = {
     'type': typeName,
-    'id': instance.id,
+    'id': String.valueOf(instance.id),
     'attributes': attributes
   }
   if (Object.keys(relationships).length !== 0) {
