@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var routesHandler = require('./routes/routes');
 var systemTrendsRoutes = require('./routes/system-trends');
@@ -11,6 +12,10 @@ var dailyRidershipRoutes = require('./routes/daily-riderships');
 var serviceHourRidershipRoutes = require('./routes/service-hour-riderships');
 
 var app = express();
+var corsOptions = {
+  options: { origin: ['localhost', 'capmetrics.org'] }
+}
+app.use(cors(corsOptions));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
