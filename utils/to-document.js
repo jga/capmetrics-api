@@ -15,12 +15,12 @@ let toRelationshipData = function(typeName, attributeData) {
   if (attributeData instanceof Array){
     let relationshipData = [];
     for (let i = 0; i < attributeData.length; i++) {
-      let resourceIdentifier = {"type": typeName, "id": String.valueOf(attributeData[i])}
+      let resourceIdentifier = { "type": typeName, "id": attributeData[i].toString() }
       relationshipData.push(resourceIdentifier);
     }
     return { 'data': relationshipData };
   } else {
-    return { 'data': { "type": typeName, "id": String.valueOf(attributeData) } }
+    return { 'data': { "type": typeName, "id": attributeData.toString() } }
   }
 }
 
@@ -72,7 +72,7 @@ let transformIncludeInstance = function(instance, relationshipFields){
   }
   let resourceObj = {
     'type': typeName,
-    'id': String.valueOf(instance.id),
+    'id': instance.id.toString(),
     'attributes': attributes
   }
   if (Object.keys(relationships).length !== 0) {
@@ -156,7 +156,7 @@ let transform = function(instance, relationshipDirectives){
   }
   let resourceObj = {
     'type': typeName,
-    'id': String.valueOf(instance.id),
+    'id': instance.id.toString(),
     'attributes': attributes
   }
   if (Object.keys(relationships).length !== 0) {
