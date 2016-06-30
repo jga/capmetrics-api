@@ -29,11 +29,12 @@ var handleDirectQuery = function(models, res, next) {
 
 var handleCollection = function (models, res, next) {
   models.PerformanceDocument
-    .findAll({where: {'name': 'system-trends'}})
-    .then(function(performanceDocument) {
-      if (performanceDocument) {
+    .findAll({ where: { name: 'system-trends' } })
+    .then(function(performanceDocuments) {
+      if (performanceDocuments[0]) {
         res.type('application/vnd.api+json');
-        res.json(JSON.parse(performanceDocument.document));
+        let jsonapiDoc = JSON.parse(performanceDocuments[0].document);
+        res.json(jsonapiDoc);
       } else {
         res.json({'data': []});
       }
