@@ -30,6 +30,7 @@ describe('system-trend endpoint tests', function() {
       let app = capmetrics;
       request(capmetrics)
         .get('/system-trends')
+        .query('performance=off')
         .expect(function(res) {
           expect(res.body.data.length).to.equal(5)
         })
@@ -40,8 +41,9 @@ describe('system-trend endpoint tests', function() {
       let app = capmetrics;
       request(capmetrics)
         .get('/system-trends')
+        .query('performance=off')
         .expect(function(res) {
-          expect(res.body.data[0].id).to.equal(1);
+          expect(res.body.data[0].id).to.equal('1');
           expect(JSON.parse(res.body.data[0].attributes.trend).length).to.equal(6);
           let trend1 = JSON.parse(res.body.data[0].attributes.trend)[0]
           expect(parseInt(trend1[1])).to.equal(parseInt(34991.72689950951))

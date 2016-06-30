@@ -88,6 +88,5 @@ describe('daily-ridership endpoint tests', function(){
         .end(done);
     });
   });
-
 });
 
