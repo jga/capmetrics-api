@@ -26,7 +26,7 @@ var toDocument = require('../utils/to-document');
 var router = express.Router();
 
 
-var handleFilter = function(models, filter, res, next){
+var handleFilterWithDirectQuery = function(models, filter, res, next){
   models.Route
     .findAll(
       {
@@ -59,8 +59,22 @@ var handleFilter = function(models, filter, res, next){
     })
 }
 
+var handleFilter = function(models, filter, res, next) {
+  let name = 'route-' + filter['route-number']
+  models.PerformanceDocument
+    .findAll({ where: { name: name } })
+    .then(function(performanceDocuments) {
+      if (performanceDocuments[0]) {
+        res.type('application/vnd.api+json');
+        let jsonapiDoc = JSON.parse(performanceDocuments[0].document);
+        res.json(jsonapiDoc);
+      } else {
+        res.json({'data': null});
+      }
+    });
+}
 
-var collectionIncludeQueryOptions = { include: [
+var collectionPrefetchQueryOptions = { include: [
     { model: models.DailyRidership, separate: false },
     { model: models.ServiceHourRidership, separate: false }
   ]
@@ -68,7 +82,7 @@ var collectionIncludeQueryOptions = { include: [
 
 var handleCollection = function(models, res, next){
   models.Route
-    .findAll(collectionIncludeQueryOptions)
+    .findAll(collectionPrefetchQueryOptions)
     .then(function(routes) {
       if (routes) {
         let relationshipDirectives = {
@@ -130,7 +144,11 @@ router.get('/', function(req, res, next) {
   let filter = req.query.filter;
   // check for route-number filter
   if (filter && filter['route-number']) {
-    handleFilter(models, filter, res, next);
+    if ('performance' in req.query && req.query.performance === 'off'){
+      handleFilterWithDirectQuery(models, filter, res, next);
+    } else {
+      handleFilter(models, filter, res, next);
+    }
   // filter not found, send collection
   } else {
     handleCollection(models, res, next);

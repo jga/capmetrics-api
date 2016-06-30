@@ -40,14 +40,15 @@ describe('routes endpoint tests', function() {
     });
   });
 
-  describe('Filter by route-number', function() {
+  describe('Filter routes by route-number', function() {
     it('returns JSON API document', function (done){
       let app = capmetrics;
       request(capmetrics)
         .get('/routes')
         .query('filter[route-number]=101')
+        .query('performance=off')
         .expect(function(res) {
-          expect(res.body.data.id).to.equal(1)
+          expect(res.body.data.id).to.equal('1')
         })
         .end(done)
     });
@@ -59,21 +60,22 @@ describe('routes endpoint tests', function() {
       request(capmetrics)
         .get('/routes/2')
         .expect(function(res) {
-          expect(res.body.data.id).to.equal(2)
+          expect(res.body.data.id).to.equal('2')
           expect(res.body.included.length).to.equal(5)
         })
         .end(done)
     });
   });
 
-  describe('GET route collection with included', function() {
+  describe('GET route collection with relationships', function() {
     it('returns expected count of resources', function (done){
       let app = capmetrics;
       request(capmetrics)
         .get('/routes')
+        .query('performance=off')
         .expect(function(res) {
           expect(res.body.data.length).to.equal(2)
-          expect(res.body.included.length).to.equal(10)
+          expect(res.body.data[0].relationships['daily-riderships'].data.length).to.equal(3)
         })
         .end(done)
     });
