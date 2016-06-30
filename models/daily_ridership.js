@@ -21,7 +21,7 @@
  * |`season`          | STRING      |
  * |`calendarYear`    | INTEGER     |
  * |`ridership`       | FLOAT       |
- * |`seasonTimestamp` | DATE        |
+ * |`measurementTimestamp` | DATE        |
  *
  */
 module.exports = function(sequelize, DataTypes) {
