@@ -23,10 +23,11 @@ var router = express.Router();
 
 var handleHighRidershipQuery = function(models, res, next) {
   models.DailyRidership
-    .findAll({include: [{ model: models.Route, where: { isHighRidership: true } }]})
+    .findAll({include: [{ model: models.Route, where: { isHighRidership: true }}] })
     .then(function(riderships) {
       if (riderships) {
         let relationshipDirectives = {
+          'modelType': 'daily-riderships',
           'pk': {'Route': null},
           'db': models
         }
@@ -64,6 +65,7 @@ var handleCollection = function(models, res, next) {
     .then(function(riderships) {
       if (riderships) {
         let relationshipDirectives = {
+          'modelType': 'daily-riderships',
           'pk': {'Route': null},
           'db': models
         }
@@ -90,6 +92,7 @@ var handleSingle = function(models, id, res, next) {
       res.type('application/vnd.api+json');
       if (ridership) {
         let relationshipDirectives = {
+          'modelType': 'daily-riderships',
           'pk': {'Route': null},
           'db': models
         }

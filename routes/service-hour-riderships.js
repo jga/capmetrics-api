@@ -39,6 +39,7 @@ var handleCollection = function(models, res, next) {
     .then(function(riderships) {
       if (riderships) {
         let relationshipDirectives = {
+          'modelType': 'service-hour-riderships',
           'pk': {'Route': null},
           'db': models
         }
@@ -65,6 +66,7 @@ var handleSingle = function(models, id, res, next) {
       res.type('application/vnd.api+json');
       if (ridership) {
         let relationshipDirectives = {
+          'modelType': 'service-hour-riderships',
           'pk': {'Route': null},
           'db': models
         }

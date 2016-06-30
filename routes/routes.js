@@ -25,6 +25,7 @@ var toDocument = require('../utils/to-document');
 
 var router = express.Router();
 
+
 var handleFilter = function(models, filter, res, next){
   models.Route
     .findAll(
@@ -37,6 +38,7 @@ var handleFilter = function(models, filter, res, next){
       res.type('application/vnd.api+json');
       if (routes){
         let relationshipDirectives = {
+          'modelType': 'routes',
           'included': {'DailyRiderships': ['Route'], 'ServiceHourRiderships': ['Route']},
           'db': models
         }
@@ -57,14 +59,21 @@ var handleFilter = function(models, filter, res, next){
     })
 }
 
+
+var collectionIncludeQueryOptions = { include: [
+    { model: models.DailyRidership, separate: false },
+    { model: models.ServiceHourRidership, separate: false }
+  ]
+}
+
 var handleCollection = function(models, res, next){
   models.Route
-    .findAll({ include: [models.DailyRidership, models.ServiceHourRidership] })
+    .findAll(collectionIncludeQueryOptions)
     .then(function(routes) {
-      if (routes){
+      if (routes) {
         let relationshipDirectives = {
-          'included': {'DailyRiderships': ['Route'],
-          'ServiceHourRiderships': ['Route']},
+          'modelType': 'routes',
+          'pk': {'DailyRiderships': null, 'ServiceHourRiderships': null},
           'db': models
         }
         let documentBuild = toDocument(routes, relationshipDirectives);
@@ -95,6 +104,7 @@ var handleSingle = function(models, id, res, next){
       res.type('application/vnd.api+json');
       if (routes){
         let relationshipDirectives = {
+          'modelType': 'routes',
           'included': {'DailyRiderships': ['Route'],
           'ServiceHourRiderships': ['Route']},
           'db': models

@@ -49,8 +49,10 @@ let buildIncludeQuery = function(relationshipFields, db) {
   return query;
 }
 
-let transformIncludeInstance = function(instance, relationshipFields){
-  let typeName = inflection.pluralize(instance.Model.getTableName());
+let transformIncludeInstance = function(modelName, instance, relationshipFields){
+  let typeName = inflection.pluralize(modelName);
+  //we have to underscore in order to be able to dasherize with inflection
+  typeName = inflection.underscore(typeName);
   typeName = inflection.dasherize(typeName);
   let attributes = {};
   let relationships = {};
@@ -81,12 +83,12 @@ let transformIncludeInstance = function(instance, relationshipFields){
   return resourceObj;
 }
 
-let buildRetrieval = function (model, id, includeQuery, relationshipFields) {
-  let modelQuery = model.findAll({where: { id: parseInt(id) }, include: includeQuery  })
+let buildRetrieval = function (modelName, model, id, includeQuery, relationshipFields) {
+  let modelQuery = model.findAll({ where: { id: parseInt(id) }, include: includeQuery })
   return modelQuery.then(function(instances) {
     let resourceObjects = [];
     for (let i = 0; i < instances.length; i++) {
-      let resourceObject = transformIncludeInstance(instances[i], relationshipFields);
+      let resourceObject = transformIncludeInstance(modelName, instances[i], relationshipFields);
       resourceObjects.push(resourceObject);
     }
     return resourceObjects;
@@ -113,23 +115,24 @@ let addToIncluded = function(modelName, db, identifiers, relationshipFields) {
   if (!identifiers instanceof Array) {
     identifiers = [identifiers]
   }
-  let model = db[inflection.singularize(modelName)]
+  let singularName = inflection.singularize(modelName)
+  let model = db[singularName]
   let retrievals = [];
   for (let i = 0; i < identifiers.length; i++) {
     let includeQuery = buildIncludeQuery(relationshipFields, db)
-    let retrieval = buildRetrieval(model, identifiers[i], includeQuery, relationshipFields)
+    let retrieval = buildRetrieval(singularName, model, identifiers[i], includeQuery, relationshipFields)
     retrievals.push(retrieval);
   }
   return retrievals;
 }
 
-let transform = function(instance, relationshipDirectives){
-  var typeName = inflection.pluralize(instance.Model.getTableName());
-  typeName = inflection.dasherize(typeName);
+let transform = function(instance, relationshipDirectives) {
+  var typeName = relationshipDirectives.modelType;
   var attributes = {};
   var relationships = {};
   var retrievalPromises = [];
   var fields = instance.toJSON();
+  //var fields = instance;
   for (let key in fields) {
     // skip primary key and foreign keys - fields with model class names
     // will not be skipped

@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     .findAll()
     .then(function(systemTrends) {
       if (systemTrends) {
-        let documentBuild = toDocument(systemTrends, null);
+        let documentBuild = toDocument(systemTrends, {'modelType': 'system-trends'});
         documentBuild
           .then(function(jsonapiDoc) {
             res.type('application/vnd.api+json');
