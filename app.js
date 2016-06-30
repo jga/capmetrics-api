@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var routesHandler = require('./routes/routes');
+var routeLabelsHandler = require('./routes/route-labels');
 var systemTrendsRoutes = require('./routes/system-trends');
 var dailyRidershipRoutes = require('./routes/daily-riderships');
 var serviceHourRidershipRoutes = require('./routes/service-hour-riderships');
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/routes', routesHandler);
+app.use('/route-labels', routeLabelsHandler);
 app.use('/system-trends', systemTrendsRoutes);
 app.use('/daily-riderships', dailyRidershipRoutes);
 app.use('/service-hour-riderships', serviceHourRidershipRoutes);
