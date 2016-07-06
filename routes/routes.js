@@ -119,8 +119,10 @@ var handleSingle = function(models, id, res, next){
       if (routes){
         let relationshipDirectives = {
           'modelType': 'routes',
-          'included': {'DailyRiderships': ['Route'],
-          'ServiceHourRiderships': ['Route']},
+          'included': {
+            'DailyRiderships': ['Route'],
+            'ServiceHourRiderships': ['Route']
+          },
           'db': models
         }
         let documentBuild = toDocument(routes[0], relationshipDirectives);
