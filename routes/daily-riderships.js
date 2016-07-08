@@ -47,6 +47,23 @@ var handleHighRidershipQuery = function(models, res, next) {
     })
 }
 
+var handleSparklines = function(models, res, next) {
+  models.PerformanceDocument
+    .findAll({ where: { name: 'ridership-sparklines' } })
+    .then(function(performanceDocuments) {
+      if (performanceDocuments[0]) {
+        res.type('application/vnd.api+json');
+        let highRidershipRoutes = JSON.parse(performanceDocuments[0].document);
+        res.json(highRidershipRoutes);
+      } else {
+        res.json([]);
+      }
+    })
+    .catch(function(error) {
+      next(error);
+    })
+}
+
 /**
  * Converts models into a JSON API response.
  *
@@ -116,6 +133,9 @@ router.get('/', function(req, res, next) {
   // check for high-ridership query string
   if ('high-ridership' in req.query) {
     handleHighRidershipQuery(models, res, next);
+  // check for sparkline data request
+  } else if ('sparkline' in req.query){
+    handleSparklines(models, res, next);
   // query not found, send collection
   } else {
     handleCollection(models, res, next);
