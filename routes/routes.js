@@ -25,7 +25,6 @@ var toDocument = require('../utils/to-document');
 
 var router = express.Router();
 
-
 var handleFilterWithDirectQuery = function(models, filter, res, next){
   models.Route
     .findAll(
