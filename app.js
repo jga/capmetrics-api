@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var highRidershipRoutes = require('./routes/high-ridership')
-var routesHandler = require('./routes/routes');
-var routeLabelsHandler = require('./routes/route-labels');
+var transitRoutesRoutes = require('./routes/routes');
+var routeLabelsRoutes = require('./routes/route-labels');
+var productivityRoutes = require('./routes/productivity');
 var systemTrendsRoutes = require('./routes/system-trends');
 var dailyRidershipRoutes = require('./routes/daily-riderships');
 var serviceHourRidershipRoutes = require('./routes/service-hour-riderships');
@@ -29,8 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/daily-riderships', dailyRidershipRoutes);
 app.use('/high-ridership', highRidershipRoutes);
-app.use('/routes', routesHandler);
-app.use('/route-labels', routeLabelsHandler);
+app.use('/routes', transitRoutesRoutes);
+app.use('/productivity', productivityRoutes);
+app.use('/route-labels', routeLabelsRoutes);
 app.use('/service-hour-riderships', serviceHourRidershipRoutes);
 app.use('/system-trends', systemTrendsRoutes);
 
@@ -71,6 +73,5 @@ app.use(function(err, req, res, next) {
   var errors = [jsonapiError];
   res.json({ 'errors': errors });
 });
-
 
 module.exports = app;
