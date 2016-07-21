@@ -7,7 +7,7 @@ var chai = require('chai');
 var expect = chai.expect;
 var fixtures = require('./fixtures/models')
 
-describe('daily-ridership endpoint tests', function(){
+describe('service-hour-ridership endpoint tests', function(){
 
   before(function() {
     // load fixtures - FYI: Sequelize is async
@@ -51,8 +51,8 @@ describe('daily-ridership endpoint tests', function(){
       request(capmetrics)
         .get('/service-hour-riderships/4')
         .expect(function(res) {
-          expect(res.body.data.id).to.equal(4)
-          expect(res.body.data.relationships.route.id).to.equal(2)
+          expect(res.body.data.id).to.equal('4')
+          expect(res.body.data.relationships.route.data.id).to.equal('2')
         })
         .end(done);
     });
@@ -71,7 +71,7 @@ describe('daily-ridership endpoint tests', function(){
         .get('/service-hour-riderships')
         .expect(function(res) {
           expect(res.body.data.length).to.equal(4)
-          expect(res.body.data[0].relationships.route.id).to.equal(1)
+          expect(res.body.data[0].relationships.route.data.id).to.equal('1')
         })
         .end(done);
     });

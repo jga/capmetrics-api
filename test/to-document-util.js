@@ -52,8 +52,8 @@ describe('to-document utility function tests', function(){
             keyedIncluded[comboKey] = included[i];
           }
           expect(keyedIncluded['daily-riderships1'].attributes.ridership).to.equal(1234)
-          expect(keyedIncluded['daily-riderships1'].relationships.route.id).to.equal(1)
-          expect(keyedIncluded['daily-riderships1'].relationships.route.type).to.equal('route')
+          expect(keyedIncluded['daily-riderships1'].relationships.route.data.id).to.equal('1')
+          expect(keyedIncluded['daily-riderships1'].relationships.route.data.type).to.equal('route')
           done();
         }).catch(done);
       });
