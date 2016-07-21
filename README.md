@@ -2,17 +2,22 @@
 
 REST API for CapMetro performance data.
 
+The API is powered by the [Express](https://expressjs.com) node.js framework.
+
 ## Endpoints
 
-These are the live API endpoints:
+Only **GET** requests are accepted. These are the live API endpoints.
 
 | API Endpoint               | Available logic                                          |
 |----------------------------|----------------------------------------------------------|
 | /daily-riderships          | GET resource collection. Limited query string support.   |
-| /daily-rirderships/1       | GET single resource by identifier                        |
+| /daily-rirderships/1       | GET single resource by identifier.                       |
+| /high-ridership            | GET visualization-ready high ridership route data.       |
 | /routes                    | GET resource collection. Limited query string support.   |
-| /routes/1                  | GET single resource by identifier                        |
-| /service-hourriderships    | GET resource collection                                  |
+| /routes/1                  | GET single resource by identifier.                       |
+| /route-labels              | GET resource collection.                                 |
+| /productivity              | GET data series for productivity analysis.               |
+| /service-hour-riderships   | GET resource collection                                  |
 | /service-hourrirderships/1 | GET single resource by identifier                        |
 | /system-trends             | GET resource collection. No query string support.        |
 

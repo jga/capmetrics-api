@@ -1,18 +1,5 @@
 'use strict';
 /**
- * Routes for providing **DailyRidership** resources.
- *
- * Exports an Express Router instance with GET functions
- * for handling collection and single resource requests.
- *
- * Responses follow the JSON API specification.  Model data
- * is keyed to the `data` member of the JSON response.
- *
- * | API Endpoint         | Available logic                           |
- * |----------------------|-------------------------------------------|
- * | /daily-riderships    | GET resource collection                   |
- * | /daily-rirderships/1 | GET single resource by identifier         |
- *
  * @module routes/daily-riderships
  */
 var models = require('../models');
@@ -64,18 +51,6 @@ var handleSparklines = function(models, res, next) {
     })
 }
 
-/**
- * Converts models into a JSON API response.
- *
- * The `included` key contains **Route** model(s) associated to
- * the returned **DailyRidership** models.
- *
- * @inner
- * @param {array} resources An array of Sequelize models.
- * @param {object} jsonApiResponse Represent a JSON API response.
- * @returns {object} The JSON API response object with model `data` and `included` keys.
- *
-**/
 var handleCollection = function(models, res, next) {
   models.DailyRidership
     .findAll({ include: [{ model: models.Route }] })
@@ -146,4 +121,18 @@ router.get('/:id', function(req, res, next) {
   handleSingle(models, req.params.id, res, next);
 });
 
+/**
+ * Router for providing active **DailyRidership** resources.
+ *
+ * Exports an Express Router instance with GET functions
+ * for handling collection and single resource requests.
+ *
+ * | API Endpoint         | Available logic                           |
+ * |----------------------|-------------------------------------------|
+ * | /daily-riderships    | GET resource collection                   |
+ * | /daily-rirderships/1 | GET single resource by identifier         |
+ *
+ * The collection endpoint accepts `high-ridership` or `sparkline` as query paramaters
+ * that return a custom format targeting the Capmetrics Web application client.
+ */
 module.exports = router;

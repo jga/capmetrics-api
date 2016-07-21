@@ -1,26 +1,9 @@
 'use strict';
 /**
- * Defines a **Route** Sequelize model.
- *
  * @module models/route
  */
 
-/**
- * A factory function that returns a Sequelize-defined **Route** model.
- *
- * @param {object} sequelize A sequelize instance.
- * @param {object} DataTypes Sequelize data types.
- * @returns {Sequelize.Model} The factory function returns a **Route** model.
- *  These are the model fields:
- *
- * | Field          | Type        |
- * |----------------|-------------|
- * |`id`            | INTEGER     |
- * |`routeNumber`   | INTEGER     |
- * |`routeName`     | STRING      |
- * |`serviceType`   | STRING      |
- */
-module.exports = function(sequelize, DataTypes) {
+var defineModel = function(sequelize, DataTypes) {
   var Route = sequelize.define('Route', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
     routeNumber: { type: DataTypes.INTEGER, field: 'route_number' } ,
@@ -40,3 +23,22 @@ module.exports = function(sequelize, DataTypes) {
   });
   return Route;
 };
+
+/**
+ * A factory function that returns a Sequelize-defined transit service **Route** model.
+ *
+ *  These are the model fields:
+ *
+ * | Field          | Type        |
+ * |----------------|-------------|
+ * |`id`            | INTEGER     |
+ * |`routeNumber`   | INTEGER     |
+ * |`routeName`     | STRING      |
+ * |`serviceType`   | STRING      |
+ *
+ * @param {object} sequelize A sequelize instance.
+ * @param {object} DataTypes Sequelize data types.
+ * @returns {Sequelize.Model} The factory function returns a **Route** model.
+ */
+module.exports = defineModel;
+

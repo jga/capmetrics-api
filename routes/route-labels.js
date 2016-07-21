@@ -1,5 +1,5 @@
 'use strict';
-
+/** @module routes/route-labels */
 var models = require('../models');
 var express = require('express');
 var toDocument = require('../utils/to-document');
@@ -41,4 +41,14 @@ router.get('/', function(req, res, next) {
   handleCollection(models, res, next);
 });
 
+/**
+ * Router for providing convenient route label JSON.
+ *
+ * Exports an Express Router instance with GET function for route label objects.
+ *
+ * | API Endpoint         | Available logic                           |
+ * |----------------------|-------------------------------------------|
+ * | /route-labels        | GET route label collection                |
+ *
+ */
 module.exports = router;

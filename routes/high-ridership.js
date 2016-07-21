@@ -1,5 +1,5 @@
 'use strict';
-
+/** @module routes/high-ridership */
 var models = require('../models');
 var express = require('express');
 
@@ -19,4 +19,14 @@ router.get('/', function(req, res, next) {
     });
 })
 
+/**
+ * Router for providing visualization-ready data for high ridership routes.
+ *
+ * Exports an Express Router instance with GET function for high ridership data.
+ *
+ * | API Endpoint         | Available logic                           |
+ * |----------------------|-------------------------------------------|
+ * | /high-ridership      | GET data series JSON                      |
+ *
+ */
 module.exports = router;

@@ -1,15 +1,8 @@
 'use strict';
-/**
- * A utility for creating JSON API documents.
- *
- * Exports `toDocument` function.
- *
- * @module utils/to-document
- */
+/** @module utils/to-document */
 
 var inflection = require('inflection');
 var IncludedHelper = require('./included-helper')
-
 
 let toRelationshipData = function(typeName, attributeData) {
   if (attributeData instanceof Array){
@@ -233,4 +226,9 @@ let toDocument = function(storage, relationshipDirectives) {
   })
 }
 
+/**
+ * A utility for creating JSON API documents.
+ *
+ * Exports `toDocument` function.
+ */
 module.exports = toDocument;

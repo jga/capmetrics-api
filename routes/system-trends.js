@@ -1,5 +1,5 @@
 'use strict';
-
+/** @module routes/system-trends */
 var models = require('../models');
 var express = require('express');
 var toDocument = require('../utils/to-document');
@@ -51,4 +51,13 @@ router.get('/', function(req, res, next) {
   }
 });
 
+/**
+ * Router for providing visualization-ready data for system trend chart.
+ *
+ * Exports an Express Router instance with GET function for system trend chart.
+ *
+ * | API Endpoint         | Available logic                           |
+ * |----------------------|-------------------------------------------|
+ * | /system-trends       | GET data series                           |
+ */
 module.exports = router;

@@ -1,18 +1,5 @@
 'use strict';
 /**
- * Routes for providing **ServiceHourRidership** resources.
- *
- * Exports an Express Router instance with GET functions
- * for handling collection and single resource requests.
- *
- * Responses follow the JSON API specification.  Model data
- * is keyed to the `data` member of the JSON response.
- *
- * | API Endpoint                | Available logic                           |
- * |-----------------------------|-------------------------------------------|
- * | /service-hour-riderships    | GET resource collection                   |
- * | /service-hour-rirderships/1 | GET single resource by identifier         |
- *
  * @module routes/service-hour-riderships
  */
 var models = require('../models');
@@ -21,18 +8,6 @@ var toDocument = require('../utils/to-document');
 
 var router = express.Router();
 
-/**
- * Converts models into a JSON API response.
- *
- * The `included` key contains **Route** model(s) associated to
- * the returned **ServiceHourRidership** models.
- *
- * @inner
- * @param {array} resources An array of Sequelize models.
- * @param {object} jsonApiResponse Represent a JSON API response.
- * @returns {object} The JSON API response object with model `data` and `included` keys.
- *
-**/
 var handleCollection = function(models, res, next) {
   models.ServiceHourRidership
     .findAll({ include: [{ model: models.Route }] })
@@ -94,5 +69,19 @@ router.get('/:id', function(req, res, next) {
   handleSingle(models, req.params.id, res, next);
 });
 
+/**
+ * Router for providing active **ServiceHourRidership** resources.
+ *
+ * Exports an Express Router instance with GET functions
+ * for handling collection and single resource requests.
+ *
+ * Responses follow the JSON API specification.  Model data
+ * is keyed to the `data` member of the JSON response.
+ *
+ * | API Endpoint                | Available logic                           |
+ * |-----------------------------|-------------------------------------------|
+ * | /service-hour-riderships    | GET resource collection                   |
+ * | /service-hour-rirderships/1 | GET single resource by identifier         |
+ */
 module.exports = router;
 

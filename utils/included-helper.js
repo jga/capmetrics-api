@@ -1,9 +1,5 @@
 'use strict';
-
-/**
- * A helper class for managing the `included` member of a JSON API response.
- * @module utils/included-helper
- */
+/** @module utils/included-helper */
 
 /**
  * A helper class for managing the `included` member of a JSON API response.
@@ -114,4 +110,7 @@ IncludedHelper.prototype.getIncluded = function getIncludedResourceObjects(){
   return this.included;
 }
 
+/**
+ * Exports a helper class for managing the `included` member of a JSON API response.
+ */
 module.exports = IncludedHelper;

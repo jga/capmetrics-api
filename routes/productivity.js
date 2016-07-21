@@ -1,5 +1,5 @@
 'use strict';
-
+/** @module routes/productivity */
 var models = require('../models');
 var express = require('express');
 
@@ -19,4 +19,14 @@ router.get('/', function(req, res, next) {
     });
 })
 
+/**
+ * Router for providing visualization-ready data for productivity analysis.
+ *
+ * Exports an Express Router instance with GET function for productivity data.
+ *
+ * | API Endpoint         | Available logic                           |
+ * |----------------------|-------------------------------------------|
+ * | /productivity        | GET data series JSON                      |
+ *
+ */
 module.exports = router;

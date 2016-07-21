@@ -1,30 +1,9 @@
 'user strict';
 /**
- * Defines a **ServiceHourRidership** Sequelize model.
  * @module models/service-hour-ridership
  */
 
-/**
- * A factory function that returns a Sequelize-defined **ServiceHourRidership** model.
- *
- * @param {object} sequelize A sequelize instance.
- * @param {object} DataTypes Sequelize data types.
- * @returns {Sequelize.Model} The factory function returns a **ServiceHourRidership** model.
- *  These are the model fields:
- *
- * | Field            | Type        |
- * |------------------|-------------|
- * |`id`              | INTEGER     |
- * |`createdOn`       | DATE        |
- * |`isCurrent`       | BOOLEAN     |
- * |`dayOfWeek`       | STRING      |
- * |`season`          | STRING      |
- * |`calendarYear`    | INTEGER     |
- * |`ridership`       | FLOAT       |
- * |`measurementTimestamp` | DATE        |
- *
- */
-module.exports = function(sequelize, DataTypes) {
+var defineModel = function(sequelize, DataTypes) {
   var ServiceHourRidership = sequelize.define('ServiceHourRidership', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
     createdOn: { type: DataTypes.DATE, field: 'created_on' },
@@ -50,3 +29,24 @@ module.exports = function(sequelize, DataTypes) {
   return ServiceHourRidership;
 };
 
+/**
+ * A factory function that returns a Sequelize-defined **ServiceHourRidership** model.
+ *
+ *  These are the model fields:
+ *
+ * | Field            | Type        |
+ * |------------------|-------------|
+ * |`id`              | INTEGER     |
+ * |`createdOn`       | DATE        |
+ * |`isCurrent`       | BOOLEAN     |
+ * |`dayOfWeek`       | STRING      |
+ * |`season`          | STRING      |
+ * |`calendarYear`    | INTEGER     |
+ * |`ridership`       | FLOAT       |
+ * |`measurementTimestamp` | DATE        |
+ *
+ * @param {object} sequelize A sequelize instance.
+ * @param {object} DataTypes Sequelize data types.
+ * @returns {Sequelize.Model} The factory function returns a **ServiceHourRidership** model.
+ */
+module.exports = defineModel;

@@ -1,24 +1,6 @@
 'use strict';
-/**
- * Routes for providing **Route** resources.
- *
- * Exports an Express Router instance with GET functions
- * for handling collection and single resource requests.
- *
- * Additionally, there is hard-wired logic for handling a
- * 'filter' query string for the `route-number` field. Other
- * query string parameters are not handled.
- *
- * Responses follow the JSON API specification.  Model data
- * is keyed to the `data` member of the JSON response.
- *
- * | API Endpoint         | Available logic                           |
- * |----------------------|-------------------------------------------|
- * | /routes              | GET resource collection                   |
- * | /routes/1            | GET single resource by identifier         |
- *
- * @module routes/daily-riderships
- */
+/** @module routes/routes */
+
 var models = require('../models');
 var express = require('express');
 var toDocument = require('../utils/to-document');
@@ -160,4 +142,22 @@ router.get('/:id', function(req, res, next) {
   handleSingle(models, req.params.id, res, next);
 });
 
+/**
+ * Router for providing **Route** resources.
+ *
+ * Exports an Express Router instance with GET functions
+ * for handling collection and single resource requests.
+ *
+ * Additionally, there is hard-wired logic for handling a
+ * 'filter' query string for the `route-number` field. Other
+ * query string parameters are not handled.
+ *
+ * Responses follow the JSON API specification.  Model data
+ * is keyed to the `data` member of the JSON response.
+ *
+ * | API Endpoint         | Available logic                           |
+ * |----------------------|-------------------------------------------|
+ * | /routes              | GET resource collection                   |
+ * | /routes/1            | GET single resource by identifier         |
+ */
 module.exports = router;
